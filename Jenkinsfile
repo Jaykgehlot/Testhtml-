@@ -1,16 +1,33 @@
-node {
-// Checkout
-git branch: ‘master’,url: ‘https://github.com/Jaykgehlot/Testhtml-.git';
+pipeline {
+  agent Any 
 
-// install required bundles
-sh ‘bundle install’
+  stages {
 
-// build and run tests with coverage
-sh ‘bundle exec rake build spec’
+    stage('building') {
+      steps {
+        echo ' The Code will be now ne built into an artifact'
+      }
+    }
+    stage('Artifact Archiving') {
+      steps {
+        echo ' The Artifact will be uploaded to an artifact repository'
+      }
+    }
+    stage('Testing') {
+      steps {
+        echo 'The Artifact will be tested'
+      }
+    }
+    stage('Stagging') {
+      steps {
+        echo 'The Artifact is stagged onto the staging server'
+      }
+    }
 
-// Archive the built artifacts
-archive (includes: ‘pkg/*.gem’)
-
-git 'https://github.com/Jaykgehlot/Testhtml-.git'
-
+    stage('Deploy') {
+      steps {
+        echo 'The software will now be deployed !'
+      }
+    }
+  }
 }
