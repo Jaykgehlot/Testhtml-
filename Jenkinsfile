@@ -32,7 +32,7 @@
                     script {
                         sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}"
                         sh "docker push ${REPOSITORY_URI}:${IMAGE_TAG}"
-                        sh"docker run -d -p 80:80 ${IMAGE_REPO_NAME}"
+                        sh"docker run -d -p 80:80 ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
                     }
                 }
             }
